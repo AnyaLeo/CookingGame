@@ -5,11 +5,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
+[System.Serializable]
 public struct RecipeIngredients
 {
-    string ingredient1;
-    string ingredient2;
-    string ingredient3;
+    public string ingredient1;
+    public string ingredient2;
+    public string ingredient3;
 
     public RecipeIngredients(string ing1, string ing2, string ing3)
     {
