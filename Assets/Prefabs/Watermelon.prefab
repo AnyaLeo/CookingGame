@@ -7,17 +7,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 64831098654705928, guid: 378504e4d02f1c044b59ddfb43eaf8b4, type: 3}
+      propertyPath: foodName
+      value: Watermelon
+      objectReference: {fileID: 0}
     - target: {fileID: 6738444572781850857, guid: 378504e4d02f1c044b59ddfb43eaf8b4, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6738444572781850857, guid: 378504e4d02f1c044b59ddfb43eaf8b4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3.296
       objectReference: {fileID: 0}
     - target: {fileID: 6738444572781850857, guid: 378504e4d02f1c044b59ddfb43eaf8b4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.025
       objectReference: {fileID: 0}
     - target: {fileID: 6738444572781850857, guid: 378504e4d02f1c044b59ddfb43eaf8b4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -81,7 +85,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6738444572781850861, guid: 378504e4d02f1c044b59ddfb43eaf8b4, type: 3}
       propertyPath: m_Name
-      value: Idk
+      value: Watermelon
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 378504e4d02f1c044b59ddfb43eaf8b4, type: 3}

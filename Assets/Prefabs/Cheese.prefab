@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 64831098654705928, guid: 378504e4d02f1c044b59ddfb43eaf8b4, type: 3}
+      propertyPath: foodName
+      value: Cheese
+      objectReference: {fileID: 0}
     - target: {fileID: 6738444572781850857, guid: 378504e4d02f1c044b59ddfb43eaf8b4, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -21,11 +25,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6738444572781850857, guid: 378504e4d02f1c044b59ddfb43eaf8b4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.6207
+      value: -2.87
       objectReference: {fileID: 0}
     - target: {fileID: 6738444572781850857, guid: 378504e4d02f1c044b59ddfb43eaf8b4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.7907
+      value: 2.32
       objectReference: {fileID: 0}
     - target: {fileID: 6738444572781850857, guid: 378504e4d02f1c044b59ddfb43eaf8b4, type: 3}
       propertyPath: m_LocalPosition.z

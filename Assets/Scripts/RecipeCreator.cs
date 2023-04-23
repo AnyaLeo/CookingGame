@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public struct ThreeIngredients
 {
@@ -67,8 +68,19 @@ public class RecipeCreator : MonoBehaviour
             return;
         }
 
-        ThreeIngredients recipeIngredients = new ThreeIngredients(ingredients[0].name, ingredients[1].name, ingredients[2].name);
+        string[] ingredientsArray = new string[numOfIngredientsRequired];
+        for (int i = 0; i < numOfIngredientsRequired; i++)
+        {
+            ingredientsArray[i] = ingredients[i].name;
+        }
+
+        // need using System to access Array.Sort
+        Array.Sort(ingredientsArray);
+
+        ThreeIngredients recipeIngredients = new ThreeIngredients(ingredientsArray[0], ingredientsArray[1], ingredientsArray[2]);
+
         bool alreadyHaveTheRecipe = recipeBook.ContainsKey(recipeIngredients);
+
         string dishName = "";
 
         if (alreadyHaveTheRecipe)
@@ -79,9 +91,9 @@ public class RecipeCreator : MonoBehaviour
         {
             // (Adjective) + (one of the ingredients on the board) + (noun for a food object)
 
-            string randomAdjective = adjectives[Random.Range(0, adjectives.Length)];
-            string randomIngredient = ingredients[Random.Range(0, ingredients.Count)].name;
-            string randomNoun = nouns[Random.Range(0, nouns.Length)];
+            string randomAdjective = adjectives[UnityEngine.Random.Range(0, adjectives.Length)];
+            string randomIngredient = ingredients[UnityEngine.Random.Range(0, ingredients.Count)].name;
+            string randomNoun = nouns[UnityEngine.Random.Range(0, nouns.Length)];
 
             dishName = $"{randomAdjective} {randomIngredient} {randomNoun}";
 

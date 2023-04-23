@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 424526893}
   - component: {fileID: 424526894}
   - component: {fileID: 424526895}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: RecipeCreationBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,6 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414ee98912ae62641b293977e088096e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numOfIngredientsRequired: 3
   ingredients: []
   adjectives: []
   nouns: []
