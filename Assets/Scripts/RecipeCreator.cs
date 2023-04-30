@@ -27,7 +27,7 @@ public class RecipeCreator : MonoBehaviour
 {
     public int numOfIngredientsRequired = 3;
 
-    public List<GameObject> ingredients;
+    public List<Food> ingredients;
 
     public string[] adjectives;
     public string[] nouns;
@@ -39,7 +39,7 @@ public class RecipeCreator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ingredients = new List<GameObject>();
+        ingredients = new List<Food>();
         recipeBook = new Dictionary<ThreeIngredients, string>();
 
         // This is how we load text files from the Resources folder in Unity
@@ -52,12 +52,24 @@ public class RecipeCreator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        ingredients.Add(collision.gameObject);
+        Food foodScript;
+        bool isFood = collision.gameObject.TryGetComponent(out foodScript);
+
+        if (isFood)
+        {
+            ingredients.Add(foodScript);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        ingredients.Remove(collision.gameObject);
+        Food foodScript;
+        bool isFood = collision.gameObject.TryGetComponent(out foodScript);
+
+        if (isFood)
+        {
+            ingredients.Remove(foodScript);
+        }
     }
 
     public void CreateFood()
@@ -71,7 +83,7 @@ public class RecipeCreator : MonoBehaviour
         string[] ingredientsArray = new string[numOfIngredientsRequired];
         for (int i = 0; i < numOfIngredientsRequired; i++)
         {
-            ingredientsArray[i] = ingredients[i].name;
+            ingredientsArray[i] = ingredients[i].foodName;
         }
 
         // need using System to access Array.Sort
@@ -92,7 +104,7 @@ public class RecipeCreator : MonoBehaviour
             // (Adjective) + (one of the ingredients on the board) + (noun for a food object)
 
             string randomAdjective = adjectives[UnityEngine.Random.Range(0, adjectives.Length)];
-            string randomIngredient = ingredients[UnityEngine.Random.Range(0, ingredients.Count)].name;
+            string randomIngredient = ingredients[UnityEngine.Random.Range(0, ingredients.Count)].foodName;
             string randomNoun = nouns[UnityEngine.Random.Range(0, nouns.Length)];
 
             dishName = $"{randomAdjective} {randomIngredient} {randomNoun}";
@@ -106,5 +118,12 @@ public class RecipeCreator : MonoBehaviour
         }
 
         dishText.text = $"Congratulations, you created a \n{dishName}";
+
+        // Consume the ingredients we used to make the food
+        int lastIndex = ingredients.Count - 1;
+        for (int i = lastIndex; i >= 0; i--)
+        {
+            Destroy(ingredients[i].gameObject);
+        }
     }
 }

@@ -16,6 +16,11 @@ public class T_DragAndDrop : MonoBehaviour
         tryingToDrag = false;
     }
 
+    public void SetTryingToDrag(bool newVal)
+    {
+        tryingToDrag = newVal;
+    }
+
     // Update is called once per frame
     void Update()
     {

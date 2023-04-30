@@ -277,7 +277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4804345562680276380, guid: e2c8598567490a64490aa4eeddd7e57a, type: 3}
       propertyPath: m_Name
-      value: Watermelon
+      value: Watermelon1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2c8598567490a64490aa4eeddd7e57a, type: 3}
@@ -675,7 +675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8282212641771313670, guid: 8ae8574bc885e7744b6d4869100f1057, type: 3}
       propertyPath: m_Name
-      value: Peach
+      value: Peach1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ae8574bc885e7744b6d4869100f1057, type: 3}
@@ -890,7 +890,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 821331772582856779, guid: a8b983c2aa00ac1499d6f028a47a5ebe, type: 3}
       propertyPath: m_Name
-      value: Pineapple
+      value: Pineapple1
       objectReference: {fileID: 0}
     - target: {fileID: 821331772582856783, guid: a8b983c2aa00ac1499d6f028a47a5ebe, type: 3}
       propertyPath: m_RootOrder

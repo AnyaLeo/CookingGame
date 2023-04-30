@@ -29,7 +29,7 @@ public class T_RecipeCreator : MonoBehaviour
 
     public Text dishName;
 
-    public List<GameObject> ingredients;
+    public List<T_Food> ingredients;
 
     public Dictionary<RecipeIngredients, string> recipeBook;
 
@@ -37,7 +37,7 @@ public class T_RecipeCreator : MonoBehaviour
     private string[] listOfNouns;
     private void Start()
     {
-        ingredients = new List<GameObject>();
+        ingredients = new List<T_Food>();
         recipeBook = new Dictionary<RecipeIngredients, string>();
 
         TextAsset adjectives = Resources.Load<TextAsset>("adjectives");
@@ -49,19 +49,21 @@ public class T_RecipeCreator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        bool isIngredient = collision.gameObject.CompareTag("Ingredient");
+        T_Food foodScript;
+        bool isIngredient = collision.gameObject.TryGetComponent(out foodScript);
         if (isIngredient)
         {
-            ingredients.Add(collision.gameObject);
+            ingredients.Add(foodScript);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        bool isIngredient = collision.gameObject.CompareTag("Ingredient");
+        T_Food foodScript;
+        bool isIngredient = collision.gameObject.TryGetComponent(out foodScript);
         if (isIngredient)
         {
-            ingredients.Remove(collision.gameObject);
+            ingredients.Remove(foodScript);
         }
     }
 
@@ -80,7 +82,7 @@ public class T_RecipeCreator : MonoBehaviour
         string[] ingredientsArray = new string[itemsRequiredForDish];
         for (int i = 0; i < itemsRequiredForDish; i++)
         {
-            ingredientsArray[i] = ingredients[i].name;
+            ingredientsArray[i] = ingredients[i].foodName;
         }
 
         // make sure you include "using System" up top
@@ -113,6 +115,11 @@ public class T_RecipeCreator : MonoBehaviour
 
         dishName.text = "Congratulations, you created a\n" + foodName;
 
-        // TODO: delete the ingredients 
+        // delete all the ingredients involved
+        int lastIndex = ingredients.Count - 1;
+        for (int i = lastIndex; i >= 0; i--)
+        {
+            Destroy(ingredients[i].gameObject);
+        }
     }
 }
