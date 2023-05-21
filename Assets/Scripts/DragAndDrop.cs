@@ -9,8 +9,7 @@ public class DragAndDrop : MonoBehaviour
 
     private bool tryingToDrag;
 
-    // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         col = gameObject.GetComponent<Collider2D>();
     }
@@ -32,15 +31,15 @@ public class DragAndDrop : MonoBehaviour
         {
             tryingToDrag = false;
         }
-    }
 
-    // Unity function that is called at specific time intervals (similar to Update)
-    // used for physics stuff like collision detection, etc.
-    void FixedUpdate() 
-    {
-        if (tryingToDrag) 
+        if (tryingToDrag)
         {
             transform.position = mousePos;
         }
+    }
+
+    public void SetTryingToDrag(bool newValue)
+    {
+        tryingToDrag = newValue;
     }
 }
