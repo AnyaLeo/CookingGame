@@ -33,6 +33,7 @@ public class RecipeCreator : MonoBehaviour
     public string[] nouns;
 
     public Dictionary<ThreeIngredients, string> recipeBook;
+    public Dictionary<string, int> foodPrices;
 
     public Text dishText;
 
@@ -41,6 +42,7 @@ public class RecipeCreator : MonoBehaviour
     {
         ingredients = new List<Food>();
         recipeBook = new Dictionary<ThreeIngredients, string>();
+        foodPrices = new Dictionary<string, int>();
 
         // This is how we load text files from the Resources folder in Unity
         TextAsset textAdjectives = Resources.Load<TextAsset>("adjectives");
@@ -113,8 +115,15 @@ public class RecipeCreator : MonoBehaviour
 
             recipeBook.Add(recipeIngredients, dishName);
 
-            print($"ADDED A RECIPE: {dishName}");
-            print(recipeIngredients.ToString());
+            // Record the price of foods required for this recipe
+            for (int i = 0; i < ingredients.Count; i++)
+            {
+                bool isPriceRecorded = foodPrices.ContainsKey(ingredients[i].foodName);
+                if (!isPriceRecorded)
+                {
+                    foodPrices.Add(ingredients[i].foodName, ingredients[i].price);
+                }
+            }
         }
 
         dishText.text = $"Congratulations, you created a \n{dishName}";

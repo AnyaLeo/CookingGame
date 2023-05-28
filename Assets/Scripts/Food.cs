@@ -5,4 +5,5 @@ using UnityEngine;
 public class Food : MonoBehaviour
 {
     public string foodName;
+    public int price = 10;
 }
