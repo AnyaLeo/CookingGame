@@ -37,6 +37,10 @@ public class RecipeCreator : MonoBehaviour
 
     public Text dishText;
 
+    // Creating an event that broadcasts when we created a recipe
+    public delegate void RecipeCreated(string recipeName);
+    public event RecipeCreated OnRecipeCreated;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -133,6 +137,15 @@ public class RecipeCreator : MonoBehaviour
         for (int i = lastIndex; i >= 0; i--)
         {
             Destroy(ingredients[i].gameObject);
+        }
+
+        // Broadcasting our event to whoever is listening
+        // First, make sure we have actual listeners who care that this event happened
+        if (OnRecipeCreated != null)
+        {
+            // Second, let them know the event happened!
+            // the input parameters will be the same as whatever you put into your delegate
+            OnRecipeCreated.Invoke(dishName);
         }
     }
 }

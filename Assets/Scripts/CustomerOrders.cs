@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public struct Order
 {
@@ -21,15 +22,27 @@ public class CustomerOrders : MonoBehaviour
     public RecipeCreator recipeCreator;
 
     private float currentTime;
-    private float maxTime;
+    public float maxTime;
 
     public Order currentOrder;
+
+    public Text orderText;
 
     // Start is called before the first frame update
     void Start()
     {
         currentTime = 0;
-        maxTime = 3;
+        // Subscribe to the event with a function that matches the delegate
+        // aka it has the same return type and same input parameters!
+        recipeCreator.OnRecipeCreated += FulfillOrder;
+    }
+
+    void FulfillOrder(string createdOrder)
+    {
+        if (createdOrder == currentOrder.order)
+        {
+            orderText.text = "";
+        }
     }
 
     // Update is called once per frame
@@ -43,10 +56,17 @@ public class CustomerOrders : MonoBehaviour
             bool canOrder = recipeCreator.recipeBook.Count > 0;
             if (canOrder)
             {
-                Debug.Log(GetRandomOrder());
+                QueueOrder();
             }
             currentTime = 0;
         }
+    }
+
+    void QueueOrder()
+    {
+        string newOrder = GetRandomOrder();
+        string ingredients = currentOrder.ingredients.ToString();
+        orderText.text = $"Customer Order: {newOrder}\n{ingredients}";
     }
 
     string GetRandomOrder()
