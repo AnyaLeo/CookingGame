@@ -28,6 +28,10 @@ public class CustomerOrders : MonoBehaviour
 
     public Text orderText;
 
+    public AudioSource orderSound;
+
+    private GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +39,8 @@ public class CustomerOrders : MonoBehaviour
         // Subscribe to the event with a function that matches the delegate
         // aka it has the same return type and same input parameters!
         recipeCreator.OnRecipeCreated += FulfillOrder;
+
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void FulfillOrder(string createdOrder)
@@ -42,6 +48,10 @@ public class CustomerOrders : MonoBehaviour
         if (createdOrder == currentOrder.order)
         {
             orderText.text = "";
+            gameManager.AddMoney(currentOrder.price);
+
+            // to fix a bug where we can keep forcing the customer to buy multiple versions of the order
+            currentOrder.order = "None";
         }
     }
 
@@ -67,6 +77,8 @@ public class CustomerOrders : MonoBehaviour
         string newOrder = GetRandomOrder();
         string ingredients = currentOrder.ingredients.ToString();
         orderText.text = $"Customer Order: {newOrder}\n{ingredients}";
+
+        orderSound.Play();
     }
 
     string GetRandomOrder()
